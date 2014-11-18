@@ -41,8 +41,6 @@ var AppView = React.createClass({
   },
 
   render: function() {
-    var color = 'yellow';
-
     var board = [];
     for(var i=0; i<this.state.numRow; i++){
       var tileInOneRow = [];
