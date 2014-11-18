@@ -5,7 +5,6 @@ var _ = require('underscore'),
 var TileView = React.createClass({
   getInitialState: function(){
     return {
-      color: 'white',
       flag: true
     };
   },
@@ -18,14 +17,13 @@ var TileView = React.createClass({
   setColor: function(){
     var nextColor = this.state.flag ? this.getRandomColor() : 'white';
     this.setState({
-      color: nextColor,
       flag: !this.state.flag
     });
   },
 
   render: function() {
     var containerStyle = {
-      backgroundColor: this.state.color
+      backgroundColor: this.props.color
     };
 
     return (

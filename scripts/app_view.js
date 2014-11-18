@@ -12,13 +12,23 @@ var AppView = React.createClass({
   },
 
   render: function() {
-    var tileInOneRow = _.times(this.state.numCol, function(){
-      return <Tile />;
-    });
-    var tileInOneRowWrapped = <div>{tileInOneRow}</div>;
-    var board = _.times(this.state.numRow, function(){
-      return tileInOneRowWrapped;
-    });
+    var color = 'yellow';
+
+    var board = [];
+    for(var i=0; i<this.state.numRow; i++){
+      var tileInOneRow = [];
+      for(var j=0; j<this.state.numCol; j++){
+        tileInOneRow.push(
+          <Tile
+            row={i}
+            col={j}
+            color={color}/>
+        );
+      }
+      //wrapped in a div to break inline-blocks into rows
+      var tileInOneRowWrapped = <div>{tileInOneRow}</div>;
+      board.push(tileInOneRowWrapped);
+    }
 
     return (
       <div>
