@@ -59,10 +59,16 @@ var AppView = React.createClass({
     }
 
     return (
-      <div>
+      <div className='app-container'>
         <div>
-          <button onClick={this.clearTiles}>Clear</button>
-          <button onClick={this.saveTiles}>Save</button>
+          <span
+            onClick={this.clearTiles}
+            title='clear tiles'
+            className='icon icon-refresh'></span>
+          <span
+            onClick={this.saveTiles}
+            title='save tiles'
+            className='icon icon-check'></span>
         </div>
         <div className='board-container'>
           {board}
