@@ -21,8 +21,13 @@ var AppView = React.createClass({
     });
 
     return (
-      <div className='board-container'>
-        {board}
+      <div>
+        <div>
+          <button>Clear</button>
+        </div>
+        <div className='board-container'>
+          {board}
+        </div>
       </div>
     );
   }
