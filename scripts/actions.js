@@ -5,8 +5,12 @@ var Actions = {
     vent.trigger('tile:update', payload);
   },
 
-  clearTile: function(payload){
-    vent.trigger('tile:clear', payload);
+  clearTiles: function(){
+    vent.trigger('tiles:clear');
+  },
+
+  saveTiles: function(){
+    vent.trigger('tiles:save');
   }
 };
 

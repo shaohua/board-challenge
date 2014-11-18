@@ -18,8 +18,8 @@ var AppView = React.createClass({
     return getStateFromStore()
   },
 
-  //three methods below can be put into a mixin
-  //but don't want to go too fancy here
+  //the three methods below can be put into a mixin
+  //but don't want to get too fancy here
   _onChange: function() {
     this.setState(getStateFromStore());
   },
@@ -33,7 +33,11 @@ var AppView = React.createClass({
   },
 
   clearTiles: function(){
-    Actions.clearTile();
+    Actions.clearTiles();
+  },
+
+  saveTiles: function(){
+    Actions.saveTiles();
   },
 
   render: function() {
@@ -47,7 +51,8 @@ var AppView = React.createClass({
           <Tile
             row={i}
             col={j}
-            color={this.state.tiles[i][j]}/>
+            color={this.state.tiles[i][j].color}
+            colored={this.state.tiles[i][j].colored}/>
         );
       }
       //wrapped in a div to break inline-blocks into rows
@@ -59,6 +64,7 @@ var AppView = React.createClass({
       <div>
         <div>
           <button onClick={this.clearTiles}>Clear</button>
+          <button onClick={this.saveTiles}>Save</button>
         </div>
         <div className='board-container'>
           {board}

@@ -10,7 +10,10 @@ var defaultTiles = [];
 for(var i=0; i<defaultNumRow; i++){
   var tileInOneRow = [];
   for(var j=0; j<defaultNumCol; j++){
-    tileInOneRow.push('white');
+    tileInOneRow.push({
+      color: 'white',
+      colored: false
+    });
   }
   defaultTiles.push(tileInOneRow);
 }
@@ -32,15 +35,31 @@ var deepcopy = function(input){
   return JSON.parse(JSON.stringify(input));
 };
 
+/**
+ * update one single tile
+ * @param  {object} payload [properties include row, col, color, colored]
+ * @return none
+ */
 vent.on('tile:update', function(payload){
   console.log('tile:update', payload);
   var tilesCopy = deepcopy(Store.get('tiles'));
-  tilesCopy[payload.row][payload.col] = payload.color;
+  tilesCopy[payload.row][payload.col].color = payload.color;
+  tilesCopy[payload.row][payload.col].colored = payload.colored;
   Store.set('tiles', tilesCopy);
 });
 
-vent.on('tile:clear', function(payload){
+/**
+ * clear all tiles
+ */
+vent.on('tiles:clear', function(){
   Store.set('tiles', defaultTiles);
+});
+
+/**
+ * save all tiles
+ */
+vent.on('tiles:save', function(){
+  console.log('saving all tiles', Store.get('tiles'));
 });
 
 

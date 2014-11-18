@@ -4,26 +4,18 @@ var _ = require('underscore'),
   Actions = require('./actions');
 
 var TileView = React.createClass({
-  getInitialState: function(){
-    return {
-      flag: true
-    };
-  },
-
   //http://www.paulirish.com/2009/random-hex-color-code-snippets/
   getRandomColor: function(){
     return '#' + Math.floor(Math.random()*16777215).toString(16);
   },
 
   setColor: function(){
-    var nextColor = this.state.flag ? this.getRandomColor() : 'white';
+    var nextColor = this.props.colored ? 'white' : this.getRandomColor();
     Actions.updateTile({
       row: this.props.row,
       col: this.props.col,
-      color: nextColor
-    });
-    this.setState({
-      flag: !this.state.flag
+      color: nextColor,
+      colored: !this.props.colored
     });
   },
 
