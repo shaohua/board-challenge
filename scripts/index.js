@@ -1,5 +1,7 @@
 /** @jsx React.DOM */
-/* global ReactRouter */
+/**
+ * entry point to the app
+ */
 var _ = require('underscore'),
   $ = require('jquery'),
   AppView = require('./app_view'),

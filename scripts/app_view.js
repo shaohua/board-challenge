@@ -1,4 +1,8 @@
 /** @jsx React.DOM */
+/**
+ * talk to Flux
+ * set up button and the board
+ */
 var _ = require('underscore'),
   Tile = require('./tile_view'),
   React = require('react'),

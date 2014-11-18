@@ -1,4 +1,7 @@
 /** @jsx React.DOM */
+/**
+ * represents each tile
+ */
 var _ = require('underscore'),
   React = require('react'),
   Actions = require('./actions');

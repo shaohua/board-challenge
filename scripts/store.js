@@ -1,3 +1,6 @@
+/**
+ * Flux - store
+ */
 var vent = require('./vent').getInstance(),
   _ = require('underscore'),
   $ = require('jquery'),

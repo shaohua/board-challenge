@@ -1,3 +1,6 @@
+/**
+ * Flux - actions
+ */
 var vent = require('./vent').getInstance();
 
 var Actions = {
