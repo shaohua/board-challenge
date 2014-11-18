@@ -1,6 +1,7 @@
 /** @jsx React.DOM */
 var _ = require('underscore'),
-  React = require('react');
+  React = require('react'),
+  Actions = require('./actions');
 
 var TileView = React.createClass({
   getInitialState: function(){
@@ -16,6 +17,11 @@ var TileView = React.createClass({
 
   setColor: function(){
     var nextColor = this.state.flag ? this.getRandomColor() : 'white';
+    Actions.updateTile({
+      row: this.props.row,
+      col: this.props.col,
+      color: nextColor
+    });
     this.setState({
       flag: !this.state.flag
     });

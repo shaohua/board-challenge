@@ -1,14 +1,39 @@
 /** @jsx React.DOM */
 var _ = require('underscore'),
   Tile = require('./tile_view'),
-  React = require('react');
+  React = require('react'),
+  Actions = require('./actions'),
+  TileStore = require('./store');
+
+var getStateFromStore = function(){
+  return {
+    numRow: TileStore.get('numRow'),
+    numCol: TileStore.get('numCol'),
+    tiles: TileStore.get('tiles')
+  };
+};
 
 var AppView = React.createClass({
   getInitialState: function(){
-    return {
-      numRow: 4,
-      numCol: 6
-    };
+    return getStateFromStore()
+  },
+
+  //three methods below can be put into a mixin
+  //but don't want to go too fancy here
+  _onChange: function() {
+    this.setState(getStateFromStore());
+  },
+
+  componentDidMount: function() {
+    TileStore.on('change', this._onChange);
+  },
+
+  componentWillUnmount: function() {
+    TileStore.off('change', this._onChange);
+  },
+
+  clearTiles: function(){
+    Actions.clearTile();
   },
 
   render: function() {
@@ -22,7 +47,7 @@ var AppView = React.createClass({
           <Tile
             row={i}
             col={j}
-            color={color}/>
+            color={this.state.tiles[i][j]}/>
         );
       }
       //wrapped in a div to break inline-blocks into rows
@@ -33,7 +58,7 @@ var AppView = React.createClass({
     return (
       <div>
         <div>
-          <button>Clear</button>
+          <button onClick={this.clearTiles}>Clear</button>
         </div>
         <div className='board-container'>
           {board}
