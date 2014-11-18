@@ -1,5 +1,6 @@
 var vent = require('./vent').getInstance(),
   _ = require('underscore'),
+  $ = require('jquery'),
   Backbone = require('backbone');
 
 //helpers
@@ -41,7 +42,6 @@ var deepcopy = function(input){
  * @return none
  */
 vent.on('tile:update', function(payload){
-  console.log('tile:update', payload);
   var tilesCopy = deepcopy(Store.get('tiles'));
   tilesCopy[payload.row][payload.col].color = payload.color;
   tilesCopy[payload.row][payload.col].colored = payload.colored;
@@ -60,6 +60,24 @@ vent.on('tiles:clear', function(){
  */
 vent.on('tiles:save', function(){
   console.log('saving all tiles', Store.get('tiles'));
+  //to save
+  //not working as it is
+  //should be posting to a backend endpoint in real life
+  $.ajax({
+    type:'POST',
+    url: '',
+    data: Store.get('tiles'),
+    contentType:'application/json; charset=utf-8'
+  })
+  .done(function() {
+    console.log("success");
+  })
+  .fail(function() {
+    console.log("error");
+  })
+  .always(function() {
+    console.log("finished");
+  });
 });
 
 
