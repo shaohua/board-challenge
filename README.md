@@ -5,7 +5,7 @@ board-challenge
 
 ### To dev
 ```
-npm install grunt-cli bower browserify
+npm install -g grunt-cli bower browserify
 npm install
 grunt
 ```
