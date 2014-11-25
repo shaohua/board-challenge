@@ -5,6 +5,7 @@
  */
 var _ = require('underscore'),
   Tile = require('./tile_view'),
+  Footer = require('./footer_view'),
   React = require('react'),
   Actions = require('./actions'),
   TileStore = require('./store');
@@ -45,6 +46,16 @@ var AppView = React.createClass({
   },
 
   render: function() {
+    console.log('render AppView');
+
+    //test props changes
+    //this will NOT work
+    var footerInput = 1;
+    var changeFooterInput = function(){
+      footerInput = Math.random();
+      console.log('footerInput', footerInput);
+    };
+
     var board = [];
     for(var i=0; i<this.state.numRow; i++){
       var tileInOneRow = [];
@@ -76,6 +87,10 @@ var AppView = React.createClass({
         </div>
         <div className='board-container'>
           {board}
+        </div>
+        <Footer input={footerInput}/>
+        <div onClick={changeFooterInput}>
+          Change footer input props
         </div>
       </div>
     );

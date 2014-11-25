@@ -23,6 +23,8 @@ var TileView = React.createClass({
   },
 
   render: function() {
+    console.log('render TileView');
+
     var containerStyle = {
       backgroundColor: this.props.color
     };
